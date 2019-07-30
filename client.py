@@ -21,6 +21,6 @@ s.connect( ( hostname_server , port  ))
 running = True
 
 while running:
-    x = raw_input("enter message: ")
+    x = input("enter message: ")
     x_encoded = x.encode()
-    s.send(x)
+    s.send(x_encoded)
