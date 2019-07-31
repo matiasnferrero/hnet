@@ -5,10 +5,10 @@ import socket
 s = socket.socket()
 
 
-server_ip = input("Please write the server IP")
+server_ip = input("Please write the server IP: ")
 
+port = input("Please write the port: ")
 
-port = 8000
 
 s.connect( ( server_ip , port  ))
 
