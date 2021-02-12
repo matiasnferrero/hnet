@@ -1,38 +1,20 @@
 
-
+""" Opens a socket and starts listening to connections from clients
+"""
 import socket
-import time
 
-listensocket = socket.socket()
+PORT = 8000
+MAX_CONNECTIONS = 999
+IP = socket.gethostname()
 
-port = 8000
+SERVER_SOCKET = socket.socket()
+SERVER_SOCKET.bind(('', PORT))
+SERVER_SOCKET.listen(MAX_CONNECTIONS)
+print('Server started listening at IP {} on port {} '.format(IP, PORT))
 
-maxConnections = 999
+(CLIENT_SOCKET, ADDRESS) = SERVER_SOCKET.accept()
+print('New connection made!')
 
-ip = socket.gethostname()
-
-listensocket.bind(  (  '' , port  )  )
-
-listensocket.listen ( maxConnections )
-
-print(' Server started listening at IP {} on port {} '.format(ip,port) )
-
-( clientsocket , adress ) = listensocket.accept()
-
-print('new connection made!')
-
-running = True 
-
-
-while running:
-  message = clientsocket.recv(1024) 
-  message_decoded = message.decode()
-  print(message)
-  print(message_decoded)
-
-  #if message_decoded != '':
-   # print('now I sleep 5 seconds before printing your next message')
-    #time.sleep(5)
-
-
-
+while True:
+    MESSAGE = CLIENT_SOCKET.recv(1024).decode()
+    print(MESSAGE)

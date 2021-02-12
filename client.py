@@ -1,20 +1,11 @@
-
-
+"""Run (on the client side) after the server started listening to connections.
+"""
 import socket
 
-s = socket.socket()
+MY_SOCKET = socket.socket()
+SERVER_IP = input("Please write the server IP: ")
+PORT = input("Please write the port: ")
+MY_SOCKET.connect((SERVER_IP, PORT))
 
-
-server_ip = input("Please write the server IP: ")
-
-port = input("Please write the port: ")
-
-
-s.connect( ( server_ip , port  ))
-
-running = True
-
-while running:
-    x = input("enter message: ")
-    x_encoded = x.encode()
-    s.send(x_encoded)
+while True:
+    MY_SOCKET.send(input("Enter message: ").encode())
